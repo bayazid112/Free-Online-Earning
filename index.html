@@ -1,11 +1,88 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Watch Ads & Earn</title>
-  </head>
-  <body style="text-align:center; background:#111; color:#00ff99; font-family:sans-serif">
-    <h1>🎬 Watch Ads & Get Rewards!</h1>
-    <p>Click the button below to start earning:</p>
-    <button onclick="window.open('https://otieu.com/4/9532949','_blank')" style="padding: 15px; font-size:18px; background:#00ff99; border:none; border-radius:8px; cursor:pointer;">▶ Watch Ad</button>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎉 Watch & Earn</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #111, #222);
+      color: #00ff99;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 18px;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    button {
+      width: 220px;
+      padding: 14px;
+      margin: 10px;
+      background: #00ff99;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 0 0 10px #00ff99;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #00e68a;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎬 Watch Ads & Get Rewards!</h1>
+  <h2>Each view helps you grow</h2>
+
+  <button onclick="watchAd()">▶ Watch Ad</button>
+  <button onclick="autoShowAds()">⏱ Auto Show Ads</button>
+  <button onclick="stopAutoAds()">⛔ Stop Auto Ads</button>
+
+  <div class="footer">Powered by Monetag</div>
+
+  <script>
+    let autoAdInterval;
+
+    function watchAd() {
+      window.open("https://otieu.com/4/9532949", "_blank");
+    }
+
+    function autoShowAds() {
+      autoAdInterval = setInterval(watchAd, 12000);
+      alert("Auto Ad Started! Enjoy earning ✨");
+    }
+
+    function stopAutoAds() {
+      clearInterval(autoAdInterval);
+      alert("Auto Ad Stopped!");
+    }
+  </script>
+</body>
 </html>
