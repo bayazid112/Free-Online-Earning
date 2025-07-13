@@ -3,85 +3,88 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎉 Watch & Earn</title>
+  <title>Auto Ads</title>
   <style>
     body {
-      background: linear-gradient(to bottom right, #111, #222);
-      color: #00ff99;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #e3f2fd;
       text-align: center;
+      margin: 0;
+      padding: 20px;
     }
-
-    h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
     h2 {
-      font-size: 18px;
-      color: #ccc;
-      margin-bottom: 30px;
+      color: #1976d2;
+      font-size: 28px;
+      margin-bottom: 20px;
     }
-
-    button {
-      width: 220px;
-      padding: 14px;
-      margin: 10px;
-      background: #00ff99;
-      color: #000;
+    iframe {
+      width: 90%;
+      height: 400px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      margin-top: 20px;
+    }
+    button {
+      margin: 10px;
+      padding: 15px 25px;
       font-size: 18px;
-      font-weight: bold;
-      box-shadow: 0 0 10px #00ff99;
+      background-color: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: background 0.3s;
     }
-
     button:hover {
-      transform: scale(1.05);
-      background: #00e68a;
-    }
-
-    .footer {
-      position: absolute;
-      bottom: 15px;
-      font-size: 12px;
-      color: #666;
+      background-color: #0d47a1;
     }
   </style>
 </head>
 <body>
-  <h1>🎬 Watch Ads & Get Rewards!</h1>
-  <h2>Each view helps you grow</h2>
+  <h2>⭐ Ad Viewer ⭐</h2>
 
-  <button onclick="watchAd()">▶ Watch Ad</button>
-  <button onclick="autoShowAds()">⏱ Auto Show Ads</button>
-  <button onclick="stopAutoAds()">⛔ Stop Auto Ads</button>
+  <iframe id="adFrame" src="https://otieu.com/4/9532949"></iframe>
 
-  <div class="footer">Powered by Monetag</div>
+  <div>
+    <button onclick="watchAd()">Watch Ad</button>
+    <button onclick="startAutoAd()">Auto Ad</button>
+    <button onclick="stopAutoAd()">Stop Ad</button>
+  </div>
 
   <script>
-    let autoAdInterval;
+    const ads = [
+      "https://otieu.com/4/9532949",
+      "https://otieu.com/4/9543567",
+      "https://otieu.com/4/9565973",
+      "https://otieu.com/4/9565977",
+      "https://otieu.com/4/9565978",
+      "https://otieu.com/4/9565980"
+    ];
+
+    let currentIndex = 0;
+    let intervalId = null;
 
     function watchAd() {
-      window.open("https://otieu.com/4/9532949", "_blank");
+      currentIndex = (currentIndex + 1) % ads.length;
+      document.getElementById("adFrame").src = ads[currentIndex];
     }
 
-    function autoShowAds() {
-      autoAdInterval = setInterval(watchAd, 12000);
-      alert("Auto Ad Started! Enjoy earning ✨");
+    function startAutoAd() {
+      stopAutoAd(); // আগে চলতেছে কিনা বন্ধ করো
+      intervalId = setInterval(() => {
+        currentIndex = (currentIndex + 1) % ads.length;
+        document.getElementById("adFrame").src = ads[currentIndex];
+      }, 10000);
+      alert("✅ Auto Ad started!");
     }
 
-    function stopAutoAds() {
-      clearInterval(autoAdInterval);
-      alert("Auto Ad Stopped!");
+    function stopAutoAd() {
+      if (intervalId !== null) {
+        clearInterval(intervalId);
+        intervalId = null;
+        alert("✅ Auto Ad stopped!");
+      }
     }
   </script>
 </body>
